@@ -26,12 +26,10 @@ function App() {
     {
         name:'bipolar',
         testTypes:['questionair'],
-        apiEndpoint:''
     },
     {
         name:'eating_disorder',
         testTypes:['questionair'],
-        apiEndpoint:''
     },
     {
       name:"parkinson's_disease",

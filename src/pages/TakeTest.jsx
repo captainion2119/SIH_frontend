@@ -33,7 +33,7 @@ function TakeTest({ data }) {
     formData.append('textData', textData);
     formData.append('videoData', videoData);
 
-    fetch('https://httpbin.org/post', {
+    fetch(data.api, {
       method: 'POST',
       body: formData,
     })
@@ -44,16 +44,11 @@ function TakeTest({ data }) {
         return response.json();
       })
       .then((data) => {
-        // Handle success, e.g., show a success message
         console.log('Data submitted successfully:', data);
-
         const currentLocation = window.location.pathname;
-
-      // Navigate to the new URL by appending '/new-url' to the current location
       navigate(`${currentLocation}/diagnosis`);
       })
       .catch((error) => {
-        // Handle errors, e.g., show an error message
         console.error('Error submitting data:', error);
       });
   };

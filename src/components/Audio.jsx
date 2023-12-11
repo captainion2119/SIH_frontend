@@ -53,7 +53,7 @@ const Audio = ({ audioData, setAudioData }) => {
       }}
     >
       {!audioData && (
-        <Stack spacing={2}>
+        <Stack flexDirection={'row'}>
           <Button onClick={startRecording} disabled={isRecording}>
             Start Recording
           </Button>
