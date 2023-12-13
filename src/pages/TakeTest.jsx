@@ -32,6 +32,8 @@ function TakeTest({ data }) {
     formData.append('imageData', imageData);
     formData.append('textData', textData);
     // formData.append('videoData', videoData);
+    // need to work on the video data
+
     //console.log(textData);
     fetch('http://127.0.0.1:5000/1', { //Change this back to /1
       method: 'POST',
