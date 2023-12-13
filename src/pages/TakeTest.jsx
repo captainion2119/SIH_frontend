@@ -31,14 +31,17 @@ function TakeTest({ data }) {
     formData.append('audioData', audioData);
     formData.append('imageData', imageData);
     formData.append('textData', textData);
-    formData.append('videoData', videoData);
+    // formData.append('videoData', videoData);
+    // need to work on the video data
 
-    fetch(data.api, {
+    //console.log(textData);
+    fetch('http://127.0.0.1:5000/1', { //Change this back to /1
       method: 'POST',
       body: formData,
     })
       .then((response) => {
         if (!response.ok) {
+          //console.log(formData);
           throw new Error('Network response was not ok');
         }
         return response.json();
