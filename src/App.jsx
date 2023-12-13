@@ -14,14 +14,14 @@ function App() {
     {
       icon: '',
       name:'depression',
-      testTypes: ['audio', 'image','text'],
-      apiEndpoint: 'https://api.example.com/test1',
+      testTypes: ['audio', 'image'],
+      apiEndpoint: 'http://127.0.0.1:5000/1',
     },
     {
       icon: anxiety,
       name:'anxiety',
-      testTypes: ['audio','image','text'],
-      apiEndpoint: 'https://api.example.com/test2',
+      testTypes: ['image','audio','text'],
+      apiEndpoint: 'http://127.0.0.1:5000/1',
     },
     {
         name:'bipolar',

@@ -2,9 +2,10 @@ import React from 'react'
 import { TextField ,Grid} from '@mui/material'
 
 function Text({textData , setTextData}) {
-    console.log("text")
+    // console.log("text")
   const handleChange = (event) => {
     setTextData(event.target.value);
+    // console.log(textData);
   };
 
   return (
@@ -20,6 +21,7 @@ function Text({textData , setTextData}) {
       </Grid>
     </>
   )
+  // console.log(textData)
 }
 
 export default Text
