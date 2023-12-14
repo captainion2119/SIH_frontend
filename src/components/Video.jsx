@@ -42,12 +42,10 @@ const Video = ({ videoData, setVideoData }) => {
   };
 
   useEffect(() => {
-    // If videoData is available, clear live video stream
     if (videoRef.current) {
       videoRef.current.srcObject = null;
     }
 
-    // If videoData is not available, display live video stream
     if (!videoData && videoRef.current) {
       navigator.mediaDevices.getUserMedia({ video: true })
         .then((stream) => {
@@ -65,7 +63,7 @@ const Video = ({ videoData, setVideoData }) => {
   }, [videoData, isRecording]);
 
   return (
-    <Stack alignContent={'center'}>
+    <Stack alignContent={'center'} sx={{backgroundColor:'honeydew'}}>
        { !videoData ?<>
        <Stack justifyContent={'space-evenly'} flexDirection={'row'}>
       <Button onClick={startRecording} disabled={isRecording}>

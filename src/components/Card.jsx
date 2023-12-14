@@ -1,8 +1,8 @@
 import React from 'react';
 import { Box, Stack, Typography } from '@mui/material';
 
-function Card({ data }) {
-  const backgroundImage = data.icon ? `url(${data.icon})` : 'none';
+function Card({ icon,name}) {
+  const backgroundImage = icon ? `url(${icon})` : 'none';
   return (
     <Box
       sx={{
@@ -37,7 +37,7 @@ function Card({ data }) {
           zIndex: 2,
         }}
       >
-        <Typography sx={{ zIndex: 3 ,color:'inherit',textDecoration:'none'}}>{data.name}</Typography>
+        <Typography sx={{ zIndex: 3 ,color:'inherit',textDecoration:'none'}}>{name}</Typography>
       </Stack>
     </Box>
   );

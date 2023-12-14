@@ -6,9 +6,8 @@ import Text from '../components/Text';
 import Image from '../components/Image';
 import Diagnosis from './Diagnosis';
 import { Typography,Stack,Button } from '@mui/material';
-function TakeTest({ data }) {
+function TakeTest({ tests}) {
   const navigate = useNavigate();
-  const tests = data.testTypes;
   const [cur, setCur] = useState(0);
   const [show, setShow] = useState(false);
   const [audioData, setAudioData] = useState(null);
@@ -57,7 +56,7 @@ function TakeTest({ data }) {
   };
 
   return (
-    <Stack alignItems={'center'} justifyContent={'center'} sx={{height:'100%'}}>
+    <Stack alignItems={'center'} justifyContent={'center'} sx={{height:'100%',width:'100%'}}>
       {cur === tests.length && <Diagnosis />}
       {!show && cur < tests.length && (
         <>
