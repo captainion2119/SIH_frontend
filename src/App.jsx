@@ -1,16 +1,17 @@
-import { createContext } from 'react'
-import Home from './pages/Home'
-import Tests from './pages/Tests';
-import Navbar from './components/Navbar';
+import React, { lazy, Suspense } from 'react';
+
+const Home = lazy(() => import('./pages/Home'));
+const Tests = lazy(() => import('./pages/Tests'));
+const Navbar = lazy(()=> import('./components/Navbar'));
 import { BrowserRouter as Router , Routes,Route } from 'react-router-dom'
 import TakeTest from './pages/TakeTest';
 import anxiety from './assets/anxiety.jpg'
-import Diagnosis from './pages/Diagnosis';
-import BipolarForm from './components/BipolarForm';
-import EatingForm from './components/EatingForm';
+const Diagnosis = lazy(()=> import('./pages/Diagnosis'));
+const BipolarForm = lazy(()=> import('./components/BipolarForm'));
+const EatingForm  =lazy(()=> import('./components/EatingForm'));
 import depression from './assets/depression.jpg';
 import Details from './pages/Details';
-import { Grid } from '@mui/material';
+import  Grid  from '@mui/material/Grid';
 function App() {
   
   const data = [
@@ -127,6 +128,8 @@ function App() {
   ];
   
   return (
+    <Suspense fallback={<div>Loading...</div>}>
+
     <div style={{height:'100%'}}>
     <Router>
       
@@ -134,13 +137,15 @@ function App() {
     
     <Grid container xs={10} sm={10} md={8} sx={{margin:'auto',height:'80%'}}>
     <Routes>
-      <Route exact path='/' element={<Home data={data}/>}/>
+      <Route exact path='/' element={<Home data= {data.map((item)=>{
+        return {name: item.name,detail: item.detail[Object.keys(item.detail)[0]]}
+      })} />}/>
       <Route exact path='/tests' element={<Tests data={data.map((item)=>{
         return {name:item.name, icon: item.icon}
       })}/>}/>
-      <Route exact path='/tests/depression' element={<TakeTest tests={data[0].testTypes}/>}/>
-      <Route path='/tests/anxiety' element={<TakeTest tests={data[1].testTypes}/>}/>
-      <Route path="/tests/parkinson's_disease" element={<TakeTest tests={data[4].testTypes}/>}/>
+      <Route exact path='/tests/depression' element={<TakeTest tests={data[0].testTypes} apiEndPoint={'2'}/>}/>
+      <Route path='/tests/anxiety' element={<TakeTest tests={data[1].testTypes} apiEndPoint={'1'}/> }/>
+      <Route path="/tests/parkinson's_disease" element={<TakeTest tests={data[4].testTypes} apiEndPoint={'3'}/>}/>
       <Route path='/tests/bipolar_disorder' element={<BipolarForm/>}/>
       <Route path='/tests/eating_disorder' element={<EatingForm/>}/>
       <Route path= "/tests/:testName/diagnosis" element={<Diagnosis/>}/>
@@ -154,6 +159,7 @@ function App() {
     
     </Router>
     </div>
+    </Suspense>
   )
 }
 

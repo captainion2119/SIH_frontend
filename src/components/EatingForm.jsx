@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
+import { Paper, Typography, Button, Radio, RadioGroup, FormControlLabel, Stack } from '@mui/material';
 
 const EatingForm = () => {
-  const [a, setA] = useState(0);
-  const [b, setB] = useState(0);
-  const [c, setC] = useState(0);
-  const [d, setD] = useState(0);
+  const [disorderState, setDisorderState] = useState({ a: 0, b: 0, c: 0, d: 0 });
   const [questionIndex, setQuestionIndex] = useState(0);
+  const [selectedOption, setSelectedOption] = useState(null);
 
   const questions = [
     {
@@ -91,84 +90,69 @@ const EatingForm = () => {
     },
 ]
 
-  const handleResponse = (response) => {
-    const increment = parseInt(response)
-    console.log(response)
+
+const handleResponse = () => {
+  if (selectedOption !== null) {
+    const increment = parseInt(selectedOption);
     const currentQuestion = questions[questionIndex];
+
+    // Update disorder state only when "Next" button is pressed
     currentQuestion.disorders.forEach((disorder) => {
-      switch (disorder) {
-        case 'a':
-          setA((prevA) => prevA + increment);
-          break;
-        case 'b':
-          setB((prevB) => prevB + increment);
-          break;
-        case 'c':
-          setC((prevC) => prevC + increment);
-          break;
-        case 'd':
-          setD((prevD) => prevD + increment);
-          break;
-        default:
-          break;
-      }
+      setDisorderState((prevDisorderState) => ({
+        ...prevDisorderState,
+        [disorder]: prevDisorderState[disorder] + increment,
+      }));
     });
 
     // Move to the next question
     setQuestionIndex((prevIndex) => prevIndex + 1);
-  };
+    // Clear selected option for the next question
+    setSelectedOption(null);
+  }
+};
 
-  const renderOptions = (options, questionIndex) => {
-    return options.map((option, index) => {
-      const val = options.length > 1 ? index  : (option.toLowerCase() === 'yes' ? 4 : 0);
-  
-      return (
-        <div key={index}>
-          <label>
-            <input
-              type="radio"
-              name={questionIndex}
-              value={val}
-              onChange={(e) => handleResponse(e.target.value)}
-            />
-            {option}
-          </label>
-        </div>
-      );
-    });
-  };
-  
+const renderOptions = (options) => {
+  return (
+    <RadioGroup value={selectedOption} onChange={(e) => setSelectedOption(e.target.value)}>
+      {options.map((option, index) => (
+        <FormControlLabel
+          key={index}
+          value={index.toString()}
+          control={<Radio />}
+          label={option}
+        />
+      ))}
+    </RadioGroup>
+  );
+};
 
-  const renderQuestion = () => {
-    const currentQuestion = questions[questionIndex];
+const renderQuestion = () => {
+  const currentQuestion = questions[questionIndex];
 
-    return (
-      <div>
-        <p>{currentQuestion.question}</p>
-        {renderOptions(currentQuestion.options,questionIndex)}
-      </div>
-    );
-  };
+  return (
+    <div>
+      <Typography variant="body1" lineHeight={1.5}>{currentQuestion.question}</Typography>
+      {renderOptions(currentQuestion.options)}
+    </div>
+  );
+};
 
   const renderResults = () => {
     // Calculate risk levels
-    const risk_a = a <= 7 ? "no" : (a <= 13 ? "risk" : "yes");
-    const risk_b = b <= 10 ? "no" : (b <= 15 ? "risk" : "yes");
-    const risk_c = c <= 8 ? "no" : (c <= 12 ? "risk" : "yes");
-    const risk_d = d <= 4 ? "no" : (d <= 7 ? "risk" : "yes");
+    const risk_a = disorderState.a <= 7 ? "no" : (disorderState.a <= 13 ? "risk" : "yes");
+    const risk_b = disorderState.b <= 10 ? "no" : (disorderState.b <= 15 ? "risk" : "yes");
+    const risk_c = disorderState.c <= 8 ? "no" : (disorderState.c <= 12 ? "risk" : "yes");
+    const risk_d = disorderState.d <= 4 ? "no" : (disorderState.d <= 7 ? "risk" : "yes");
   
-    // Check if all risk levels are "no"
     const noEatingDisorder = risk_a === "no" && risk_b === "no" && risk_c === "no" && risk_d === "no";
   
     return (
       <div>
         <p>Your results:</p>
-        <p>Disorder A (Anorexia Nervosa): {a}</p>
-        <p>Disorder B (Bulimia Nervosa): {b}</p>
-        <p>Disorder C (Binge Eating Disorder): {c}</p>
-        <p>Disorder D (ARFID): {d}</p>
-  
-        {/* Display risk levels */}
+        <p>Disorder A (Anorexia Nervosa): {disorderState.a}</p>
+        <p>Disorder B (Bulimia Nervosa): {disorderState.b}</p>
+        <p>Disorder C (Binge Eating Disorder): {disorderState.c}</p>
+        <p>Disorder D (ARFID): {disorderState.d}</p>
         {risk_a === "risk" && <p>You are at risk of Anorexia Nervosa disorder.</p>}
         {risk_a === "yes" && <p>You have Anorexia Nervosa disorder.</p>}
   
@@ -180,8 +164,6 @@ const EatingForm = () => {
   
         {risk_d === "risk" && <p>You are at risk of Avoidant Restrictive Food Intake Disorder (ARFID).</p>}
         {risk_d === "yes" && <p>You have Avoidant Restrictive Food Intake Disorder (ARFID).</p>}
-  
-        {/* Display message for no eating disorder */}
         {noEatingDisorder && <p>You don't have an eating disorder.</p>}
       </div>
     );
@@ -189,11 +171,20 @@ const EatingForm = () => {
   
 
   return (
-    <div>
-      {questionIndex < questions.length
-        ? renderQuestion()
-        : renderResults()}
-    </div>
+    <Paper sx={{ height: '70vh',width:'100%', padding: '1rem', marginTop: '2rem' }}>
+      {questionIndex < questions.length ? (
+        <Stack  sx={{ height: '80%' }} justifyContent={'center'} spacing={2}>
+          {renderQuestion()}
+          
+           <Button onClick={handleResponse} sx={{alignSelf:'center'}}>Next</Button>
+          
+        </Stack>
+      ) : (
+        <Stack sx={{ height: '50%' }} alignItems={'center'} justifyContent={'center'}>
+          {renderResults()}
+        </Stack>
+      )}
+    </Paper>
   );
 };
 

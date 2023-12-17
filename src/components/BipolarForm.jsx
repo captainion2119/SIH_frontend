@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Paper,Typography,Button,Stack } from '@mui/material';
+import { Paper, Typography, Button, Stack, RadioGroup, Radio, FormControlLabel } from '@mui/material';
 const questions = [
    [ "1. In the past, have you experienced periods of unusually elevated or irritable mood that lasted for several days or more, during which you felt extremely energetic, talkative, and confident, and may have engaged in impulsive or risky activities? ", 0.99, 0.182],
     ["2. Have you ever had periods of time when you felt excessively grandiose or superior to others, believing that you possessed special powers, talents, or abilities that others did not, even when there was no evidence to support these beliefs? ", 0.87, 0.095],
@@ -29,35 +29,43 @@ const questions = [
 ]
 
 
+
 const BipolarForm = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [totalScore, setTotalScore] = useState(0);
+  const [response, setResponse] = useState(null);
 
-  const handleResponse = (response) => {
+  const handleResponse = () => {
     const currentQuestionInfo = questions[currentQuestion];
     const responseValue = response === 'yes' ? currentQuestionInfo[1] * currentQuestionInfo[2] : 0;
 
     setTotalScore(totalScore + responseValue);
     setCurrentQuestion(currentQuestion + 1);
+    setResponse(null); // Reset response for the next question
   };
 
   return (
-    <Paper sx={{height:'100%',padding:'1rem',marginTop:'2rem'}} >
-        
+    <Paper sx={{ height: '70vh',width:'100%', padding: '1rem', marginTop: '2rem' }}>
       {currentQuestion < questions.length ? (
-        <Stack alignItems={'center'} sx={{height:'80%'}} justifyContent={'center'} spacing={10}>
+        <Stack alignItems={'center'} sx={{ height: '80%' }} justifyContent={'center'} spacing={3}>
           <Typography variant="body1" lineHeight={1.5}>{questions[currentQuestion][0]}</Typography>
-          <Stack flexDirection={'row'} alignContent={'center'}>
-          <Button onClick={() => handleResponse('yes')}>Yes</Button>
-          <Button onClick={() => handleResponse('no')}>No</Button>
+          <RadioGroup sx={{alignSelf:'flex-start'}} value={response} onChange={(e) => setResponse(e.target.value)}>
+            <FormControlLabel value="yes" control={<Radio />} label="Yes" />
+            <FormControlLabel value="no" control={<Radio />} label="No" />
+          </RadioGroup>
+          <Stack direction={'row'} spacing={2}>
+            <Button onClick={handleResponse} >
+              Next
+            </Button>
           </Stack>
         </Stack>
       ) : (
-        <Stack sx={{height:'50%'}} alignItems={'center'} justifyContent={'center'}>
+        <Stack sx={{ height: '50%' }} alignItems={'center'} justifyContent={'center'}>
           <Typography>Questionnaire completed!</Typography>
           <Typography>Total Score: {totalScore}</Typography>
-          <Typography>Probablity of bipolar occurance is {(totalScore / 0.91856 * 100).toFixed(2)} %
-</Typography>
+          <Typography>
+            Probability of bipolar occurrence is {(totalScore / 0.91856 * 100).toFixed(2)} %
+          </Typography>
         </Stack>
       )}
     </Paper>

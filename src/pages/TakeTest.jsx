@@ -6,7 +6,7 @@ import Text from '../components/Text';
 import Image from '../components/Image';
 import Diagnosis from './Diagnosis';
 import { Typography,Stack,Button } from '@mui/material';
-function TakeTest({ tests}) {
+function TakeTest({ tests,apiEndPoint}) {
   const navigate = useNavigate();
   const [cur, setCur] = useState(0);
   const [show, setShow] = useState(false);
@@ -34,7 +34,7 @@ function TakeTest({ tests}) {
     // need to work on the video data
 
     //console.log(textData);
-    fetch('http://127.0.0.1:5000/1', { //Change this back to /1
+    fetch(`http://127.0.0.1:5000/${apiEndPoint}`, { //Change this back to /1
       method: 'POST',
       body: formData,
     })
