@@ -16,9 +16,9 @@ const Anxietysol = ({ anxietyLevel }) => {
         // Determine which mudra to show based on anxiety level
         if (anxietyLevel <= 40) {
           setMudra("ChinMudra");
-        } else if (40 < anxietyLevel <= 60) {
+        } else if ( anxietyLevel <= 60) {
           setMudra("ApanaMudra");
-        } else if (60 < anxietyLevel < 90) {
+        } else if ( anxietyLevel < 90) {
           setMudra("PranaMudra");
         }
 

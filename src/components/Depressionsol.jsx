@@ -16,11 +16,11 @@ const Depressionsol = ({ depressionLevel }) => {
     const fetchData = async () => {
       try {
         // Determine which mudra to show based on anxiety level
-         if (15<depressionLevel <= 40) {
+         if (depressionLevel <= 40) {
           setMudra("ChinMudra");
-        } else if (40 < depressionLevel <= 60) {
+        } else if (depressionLevel <= 60) {
           setMudra("AnjaliMudra");
-        } else if (60 < depressionLevel < 90) {
+        } else if (depressionLevel < 90) {
           setMudra("PranaMudra");
         }
 
