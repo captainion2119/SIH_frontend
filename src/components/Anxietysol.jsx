@@ -91,7 +91,7 @@ const Anxietysol = ({ anxietyLevel }) => {
         </p>
 
         
-      <GetHospitle/>
+      <GetHospitle keywords={'mental healthcare,anxiety'}/>
       </div>
       ) : (
         <p>No emergency at the moment.</p>

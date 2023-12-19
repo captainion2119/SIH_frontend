@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Paper, Typography, Button, Radio, RadioGroup, FormControlLabel, Stack } from '@mui/material';
+import GetHospitle from './GetHospitle';
 
 const EatingForm = () => {
   const [disorderState, setDisorderState] = useState({ a: 0, b: 0, c: 0, d: 0 });
@@ -148,11 +149,6 @@ const renderQuestion = () => {
   
     return (
       <div>
-        <p>Your results:</p>
-        <p>Disorder A (Anorexia Nervosa): {disorderState.a}</p>
-        <p>Disorder B (Bulimia Nervosa): {disorderState.b}</p>
-        <p>Disorder C (Binge Eating Disorder): {disorderState.c}</p>
-        <p>Disorder D (ARFID): {disorderState.d}</p>
         {risk_a === "risk" && <p>You are at risk of Anorexia Nervosa disorder.</p>}
         {risk_a === "yes" && <p>You have Anorexia Nervosa disorder.</p>}
   
@@ -164,6 +160,7 @@ const renderQuestion = () => {
   
         {risk_d === "risk" && <p>You are at risk of Avoidant Restrictive Food Intake Disorder (ARFID).</p>}
         {risk_d === "yes" && <p>You have Avoidant Restrictive Food Intake Disorder (ARFID).</p>}
+        {!noEatingDisorder && <GetHospitle keywords={'mental healthcare,eating disorder,psychiatrist'}/>}
         {noEatingDisorder && <p>You don't have an eating disorder.</p>}
       </div>
     );

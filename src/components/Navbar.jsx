@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { Grid, Menu, MenuItem, Button, Typography } from '@mui/material';
-
+import logo from '../assets/swas.png'
 function Navbar({ data }) {
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -21,10 +21,10 @@ function Navbar({ data }) {
 
   return (
     <>
-      <Grid container justifyContent={'space-between'} px={1.5} my={2} sx={{ position: 'sticky', top: '1rem', zIndex: '100' }}>
+      <Grid container alignItems={'center'} justifyContent={'space-between'} px={1.5}  sx={{ position: 'sticky', top: '0', zIndex: '100' }}>
         <Grid item>
           <NavLink to={'/'} style={{ color: 'inherit', textDecoration: 'none' }}>
-            LOGO
+            <img src={logo} alt="logo" width={'70px'} height={'70px'} />
           </NavLink>
         </Grid>
         <Grid item container xs spacing={2.5} justifyContent={'flex-end'}>

@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function GetHospitle() {
+function GetHospitle({keywords}) {
     
   const [userLocation, setUserLocation] = useState({'latitude':26.839615479820807,'longitude': 75.56448077513275});
   const [healthcareCenters, setHealthcareCenters] = useState([]);
@@ -25,7 +25,7 @@ function GetHospitle() {
               const hereApiUrl = 'https://discover.search.hereapi.com/v1/discover';
               const params = {
                 at: `${userLocation.latitude},${userLocation.longitude}`,
-                q: 'mental healthcare, eating disorder, hospital',
+                q: keywords,
                 apiKey: hereApiKey,
               };
               const healthcareCentersResponse = await axios.get(hereApiUrl, { params });

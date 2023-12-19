@@ -18,7 +18,7 @@ function App() {
     {
       icon: depression,
       name: 'depression',
-      testTypes: ['audio', 'image'],
+      testTypes: ['audio', 'image','text'],
       detail: {
         'What is depression':
           'Depression is a common and serious medical illness that negatively affects how you feel, think, and act. It causes feelings of sadness and/or a loss of interest in activities once enjoyed.',
@@ -44,7 +44,7 @@ function App() {
     {
       icon: anxiety,
       name: 'anxiety',
-      testTypes: ['image', 'audio', 'text'],
+      testTypes: ['image', 'audio'],
       detail: {
         'What is anxiety':
           'Anxiety is a normal reaction to stress and can be beneficial in some situations. However, when it becomes excessive or chronic, it can interfere with daily life.',
