@@ -22,9 +22,11 @@ function TakeTest({ tests,apiEndPoint}) {
   const handleNextClick = () => {
     cur === tests.length - 1 ? handleSubmit() : setCur(cur + 1);
     setShow(false);
+
   };
 
   const handleSubmit = () => {
+    
     const formData = new FormData();
 
     formData.append('audioData', audioData);
@@ -34,7 +36,7 @@ function TakeTest({ tests,apiEndPoint}) {
     // need to work on the video data
 
     //console.log(textData);
-    fetch(`http://127.0.0.1:5000/${apiEndPoint}`, { //Change this back to /1
+    fetch(`http://127.0.0.1:5000/update/${apiEndPoint}`, { //Change this back to /1
       method: 'POST',
       body: formData,
     })
@@ -46,9 +48,9 @@ function TakeTest({ tests,apiEndPoint}) {
         return response.json();
       })
       .then((data) => {
-        console.log('Data submitted successfully:', data);
+        console.log('Data submitted successfully:',data);
   const currentLocation = window.location.pathname;
-  navigate(`${currentLocation}/diagnosis/${data}`);
+  navigate(`${currentLocation}/diagnosis/${data['message']}`);
       })
       .catch((error) => {
         console.error('Error submitting data:', error);

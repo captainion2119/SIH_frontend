@@ -8,17 +8,17 @@ const Depressionsol = ({ depressionLevel }) => {
   const [userLocation, setUserLocation] = useState(null);
   const [healthcareCenters, setHealthcareCenters] = useState([]);
   const [mudra, setMudra] = useState(null);
-
+  depressionLevel = parseFloat(depressionLevel);
   useEffect(() => {
     console.log(depressionLevel)
     const fetchData = async () => {
       try {
         // Determine which mudra to show based on anxiety level
-        if (depressionLevel <= 0.4) {
+         if (15<depressionLevel <= 40) {
           setMudra("ChinMudra");
-        } else if (0.4 < depressionLevel <= 0.6) {
+        } else if (40 < depressionLevel <= 60) {
           setMudra("AnjaliMudra");
-        } else if (0.6 < depressionLevel < 0.9) {
+        } else if (60 < depressionLevel < 90) {
           setMudra("PranaMudra");
         }
 
@@ -31,7 +31,7 @@ const Depressionsol = ({ depressionLevel }) => {
     fetchData();
   }, [depressionLevel, userLocation]);
   const mudraInstructions = {
-    "chin_mudra": [
+    "ChinMudra": [
         "**->MILD DEPRESSION**\n",
         "**CHIN  MUDRA INSTRUCTIONS**\n",
         "• Step 1: Sit comfortably with your back straight and your hands resting on your knees.\n",
@@ -42,7 +42,7 @@ const Depressionsol = ({ depressionLevel }) => {
         "    *Fact: Chin Mudra can help calm the mind and improve concentration.*",
         " "
     ],
-    "anjali_mudra": [
+    "AnjaliMudra": [
         "**->MODERATE DEPRESSION**\n",
         "**ANJALI MUDRA INSTRUCTIONS**\n",
         "• Step 1: Sit comfortably with your back straight.\n",
@@ -53,7 +53,7 @@ const Depressionsol = ({ depressionLevel }) => {
         "     *Fact: Anjali Mudra represents gratitude and balance.*",
         " "
     ],
-    "prana_mudra": [
+    "PranaMudra": [
         "**->SEVERE DEPRESSION**\n",
         "**PRANA MUDRA INSTRUCTIONS**\n",
         "• Step 1: Sit comfortably with your back straight.\n",
@@ -81,7 +81,7 @@ const Depressionsol = ({ depressionLevel }) => {
         </div>
       )}
 
-      {depressionLevel > 0.9 ? (
+      {depressionLevel > 90 ? (
         <div>
         <p>
           <strong>EXTREME ANXIETY</strong>
@@ -108,6 +108,7 @@ const Depressionsol = ({ depressionLevel }) => {
       ) : (
         <p>No emergency at the moment.</p>
       )}
+      {!mudra && <p>You dont have depression</p>}
     </div>
   );
 };
