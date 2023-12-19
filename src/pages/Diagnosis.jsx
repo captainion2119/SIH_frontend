@@ -1,36 +1,27 @@
 import React, { useState, useEffect } from 'react';
-
+import { useParams } from 'react-router-dom';
+import Anxietysol from '../components/Anxietysol';
+import Depressionsol from '../components/Depressionsol';
 function Diagnosis() {
-  const [apiData, setApiData] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetch('')
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setApiData(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        // Handle errors, e.g., show an error message
-        console.error('Error fetching data:', error);
-        setLoading(false);
-      });
-  }, []); // Empty dependency array means this effect runs once when the component mounts
-
+  const { testName ,data} = useParams()
   return (
-    <div>
-      <h2>Diagnosis</h2>
-      {loading && <p>Loading...</p>}
-      {apiData && (
-       <p>${apiData}</p>
-      )}
-    </div>
+    <>
+    {
+      testName == 'anxiety' && <Anxietysol anxietyLevel={data}/>
+    }
+    {
+      testName == 'depression' && <Depressionsol depressionLevel = {data}/>
+    }
+    {
+      testName == "parkinson's_disease" && <Parkinsonsol data={data}/>
+    }
+    {
+      testName == 'bipolar_disorder' && <Bipolarsol data={data}/>
+    }
+    {
+      testName == 'eating_disorder' && <Eatingsol data={data}/>
+    }
+    </>
   );
 }
 

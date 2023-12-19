@@ -14,7 +14,7 @@ function TakeTest({ tests,apiEndPoint}) {
   const [imageData, setImageData] = useState(null);
   const [textData, setTextData] = useState(null);
   const [videoData, setVideoData] = useState(null);
-
+  
   const handleYesClick = () => {
     setShow(true);
   };
@@ -47,8 +47,8 @@ function TakeTest({ tests,apiEndPoint}) {
       })
       .then((data) => {
         console.log('Data submitted successfully:', data);
-        const currentLocation = window.location.pathname;
-      navigate(`${currentLocation}/diagnosis`);
+  const currentLocation = window.location.pathname;
+  navigate(`${currentLocation}/diagnosis/${data}`);
       })
       .catch((error) => {
         console.error('Error submitting data:', error);

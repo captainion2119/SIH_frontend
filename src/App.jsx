@@ -148,12 +148,13 @@ function App() {
       <Route path="/tests/parkinson's_disease" element={<TakeTest tests={data[4].testTypes} apiEndPoint={'3'}/>}/>
       <Route path='/tests/bipolar_disorder' element={<BipolarForm/>}/>
       <Route path='/tests/eating_disorder' element={<EatingForm/>}/>
-      <Route path= "/tests/:testName/diagnosis" element={<Diagnosis/>}/>
+      <Route path= "/tests/:testName/diagnosis/:data" element={<Diagnosis/>}/>
       <Route path= "/details/depression" element={<Details data = {{name:data[0].name,detail:data[0].detail}}/>}/>
       <Route path= "/details/anxiety" element={<Details data = {{name:data[1].name,detail:data[1].detail}}/>}/>
       <Route path= "/details/bipolar_disorder" element={<Details data = {{name:data[2].name,detail:data[2].detail}}/>}/>
       <Route path= "/details/eating_disorder" element={<Details data = {{name:data[3].name,detail:data[3].detail}}/>}/>
       <Route path= "/details/parkinson's_disease" element={<Details data = {{name:data[4].name,detail:data[4].detail}}/>}/>
+      
     </Routes>
     </Grid>
     
