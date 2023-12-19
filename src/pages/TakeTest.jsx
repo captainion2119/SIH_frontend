@@ -12,7 +12,7 @@ function TakeTest({ tests,apiEndPoint}) {
   const [show, setShow] = useState(false);
   const [audioData, setAudioData] = useState(null);
   const [imageData, setImageData] = useState(null);
-  const [textData, setTextData] = useState(null);
+  const [textData, setTextData] = useState(Array(5).fill(''));
   const [videoData, setVideoData] = useState(null);
   
   const handleYesClick = () => {
@@ -26,7 +26,12 @@ function TakeTest({ tests,apiEndPoint}) {
   };
 
   const handleSubmit = () => {
-    
+    console.log('textData:', textData);
+    if (textData.some((data) => data.trim() === '')) {
+      console.error('Text data cannot be empty. Please fill in all the text forms.');
+      // Optionally, you can display a message to the user or handle the empty case in another way
+      return;
+    }
     const formData = new FormData();
 
     formData.append('audioData', audioData);
