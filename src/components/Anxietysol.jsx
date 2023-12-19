@@ -4,9 +4,9 @@ import axios from 'axios';
 import ChinMudra from '../assets/Chin-mudra.gif'
 import ApanaMudra from '../assets/Apana-mudra.gif'
 import PranaMudra from '../assets/Prana-mudra.gif'
+
+import GetHospitle from '../components/GetHospitle';
 const Anxietysol = ({ anxietyLevel }) => {
-  const [userLocation, setUserLocation] = useState(null);
-  const [healthcareCenters, setHealthcareCenters] = useState([]);
   const [mudra, setMudra] = useState(null);
 
   useEffect(() => {
@@ -14,11 +14,11 @@ const Anxietysol = ({ anxietyLevel }) => {
     const fetchData = async () => {
       try {
         // Determine which mudra to show based on anxiety level
-        if (anxietyLevel <= 0.4) {
+        if (anxietyLevel <= 40) {
           setMudra("ChinMudra");
-        } else if (0.4 < anxietyLevel <= 0.6) {
+        } else if (40 < anxietyLevel <= 60) {
           setMudra("ApanaMudra");
-        } else if (0.6 < anxietyLevel < 0.9) {
+        } else if (60 < anxietyLevel < 90) {
           setMudra("PranaMudra");
         }
 
@@ -29,7 +29,7 @@ const Anxietysol = ({ anxietyLevel }) => {
     };
 
     fetchData();
-  }, [anxietyLevel, userLocation]);
+  }, [anxietyLevel]);
   const mudraInstructions = {
     "ChinMudra": [
         "**->MILD ANXIETY**\n",
@@ -70,14 +70,9 @@ const Anxietysol = ({ anxietyLevel }) => {
     <div>
       {mudra && (
         <div>
-          <p>
-            <strong>Mudra for Anxiety:</strong>
-          </p>
+          <h5>You have {anxietyLevel} % of anxiety</h5>
           <img src={mudra == 'ChinMudra'? ChinMudra: mudra == 'ApanaMudra'? ApanaMudra: PranaMudra} alt="Mudra" />
 
-          <p>
-            <strong>Mudra Instructions:</strong>
-          </p>
           <ul>
             {mudraInstructions[mudra].map((instruction, idx) => (
               <li key={idx}>{instruction}</li>
@@ -86,7 +81,7 @@ const Anxietysol = ({ anxietyLevel }) => {
         </div>
       )}
 
-      {anxietyLevel > 0.9 ? (
+      {anxietyLevel > 90 ? (
         <div>
         <p>
           <strong>EXTREME ANXIETY</strong>
@@ -95,20 +90,8 @@ const Anxietysol = ({ anxietyLevel }) => {
           <strong>EMERGENCY HELPLINE:</strong> Toll-Free Mental Health Rehabilitation Helpline Kiran: 1800-599-0019
         </p>
 
-        {healthcareCenters.length > 0 ? (
-          <div>
-            <p>Finding nearby mental healthcare centers and clinics...</p>
-            <ul>
-              {healthcareCenters.map((center, idx) => (
-                <li key={idx}>
-                  {center.title} - Contact Numbers: {center.contacts?.[0]?.phone?.[0]?.value || 'N/A'}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ) : (
-          <p>No nearby mental healthcare centers and clinics found.</p>
-        )}
+        
+      <GetHospitle/>
       </div>
       ) : (
         <p>No emergency at the moment.</p>

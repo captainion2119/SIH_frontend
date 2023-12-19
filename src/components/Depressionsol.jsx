@@ -4,6 +4,8 @@ import axios from 'axios';
 import ChinMudra from '../assets/Chin-mudra.gif'
 import AnjaliMudra from '../assets/Anjali-mudra.gif'
 import PranaMudra from '../assets/Prana-mudra.gif'
+
+import GetHospitle from '../components/GetHospitle';
 const Depressionsol = ({ depressionLevel }) => {
   const [userLocation, setUserLocation] = useState(null);
   const [healthcareCenters, setHealthcareCenters] = useState([]);
@@ -68,6 +70,7 @@ const Depressionsol = ({ depressionLevel }) => {
 }
   return (
     <div>
+      <h5>You have {depressionLevel}% of depression</h5>
       {mudra && (
         <div>
           
@@ -90,20 +93,8 @@ const Depressionsol = ({ depressionLevel }) => {
           <strong>EMERGENCY HELPLINE:</strong> Toll-Free Mental Health Rehabilitation Helpline Kiran: 1800-599-0019
         </p>
 
-        {healthcareCenters.length > 0 ? (
-          <div>
-            <p>Finding nearby mental healthcare centers and clinics...</p>
-            <ul>
-              {healthcareCenters.map((center, idx) => (
-                <li key={idx}>
-                  {center.title} - Contact Numbers: {center.contacts?.[0]?.phone?.[0]?.value || 'N/A'}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ) : (
-          <p>No nearby mental healthcare centers and clinics found.</p>
-        )}
+        
+      <GetHospitle/>
       </div>
       ) : (
         <p>No emergency at the moment.</p>
