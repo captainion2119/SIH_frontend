@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 import  useMediaQuery from '@mui/material/useMediaQuery'
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
-import DepressionQuestion from '../components/DepressionQuestion';  
+import Bot from '../components/Bot' 
 const LearnMoreCard = lazy(() => import('../components/LearnMoreCard'));
 
 const Footer = lazy(() => import('../components/Footer'));
@@ -57,7 +57,7 @@ return(
       </Stack>
       <Footer />
     </Stack>
-    <DepressionQuestion/>
+    <Bot/> 
   </Suspense>);
 };
 
