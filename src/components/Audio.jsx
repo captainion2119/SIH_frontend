@@ -50,6 +50,8 @@ const Audio = ({ audioData, setAudioData }) => {
         alignItems: 'center',
         height: '100%',
         padding: '20px',
+        justifyContent:'center',
+        gap:'2rem'
       }}
     >
       {!audioData && (

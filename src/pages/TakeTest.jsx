@@ -6,6 +6,7 @@ import Text from '../components/Text';
 import Image from '../components/Image';
 import Diagnosis from './Diagnosis';
 import { Typography,Stack,Button } from '@mui/material';
+import AnxietyQuestion from '../components/AnxietyQuestion';
 function TakeTest({ tests,apiEndPoint}) {
   const navigate = useNavigate();
   const [cur, setCur] = useState(0);
@@ -14,7 +15,7 @@ function TakeTest({ tests,apiEndPoint}) {
   const [imageData, setImageData] = useState(null);
   const [textData, setTextData] = useState(Array(5).fill(''));
   const [videoData, setVideoData] = useState(null);
-  
+  const [answers,setAnswers] = useState(null);
   const handleYesClick = () => {
     setShow(true);
   };
@@ -29,7 +30,6 @@ function TakeTest({ tests,apiEndPoint}) {
     console.log('textData:', textData);
     if (textData.some((data) => data.trim() === '')) {
       console.error('Text data cannot be empty. Please fill in all the text forms.');
-      // Optionally, you can display a message to the user or handle the empty case in another way
       return;
     }
     const formData = new FormData();
@@ -37,6 +37,7 @@ function TakeTest({ tests,apiEndPoint}) {
     formData.append('audioData', audioData);
     formData.append('imageData', imageData);
     formData.append('textData', textData);
+    formData.append('questionnaireData',answers);
     // formData.append('videoData', videoData);
     // need to work on the video data
 
@@ -63,7 +64,7 @@ function TakeTest({ tests,apiEndPoint}) {
   };
 
   return (
-    <Stack alignItems={'center'} justifyContent={'center'} sx={{height:'100%',width:'100%'}}>
+    <Stack alignItems={'center'} justifyContent={'center'} sx={{height:'100%',width:'100%'}} gap={'2rem'}>
       {cur === tests.length && <Diagnosis />}
       {!show && cur < tests.length && (
         <>
@@ -83,12 +84,13 @@ function TakeTest({ tests,apiEndPoint}) {
 
       {show && cur < tests.length && tests[cur] === 'video' && <Video videoData={videoData} setVideoData={setVideoData} />}
 
+        {show && cur<tests.length && tests[cur] === 'questionnaire' && <AnxietyQuestion setAnswers={setAnswers}/>}
       {show &&
         (cur < tests.length - 1 ? (
-          <Button onClick={handleNextClick}>Next</Button>
+          <Button onClick={handleNextClick}sx={{marginTop:'1rem',marginBottom:'2rem'}}>Next</Button>
         ) : (
        
-            <Button onClick={handleSubmit}>Submit</Button>
+            <Button onClick={handleSubmit} sx={{marginTop:'1rem',marginBottom:'2rem'}}>Submit</Button>
           
         ))}
     </Stack>

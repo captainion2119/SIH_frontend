@@ -65,14 +65,16 @@ const AnxietyQuestion = ({setAnswers}) => {
               value={responses[questions[currentQuestion].id] || ''}
               onChange={(e) => handleResponse(e.target.value)}
             >
+                <div style={{display:'flex',width:'90%'}}>
               {questions[currentQuestion].options.map((option, index) => (
                 <FormControlLabel key={index} value={String(index)} control={<Radio />} label={option} />
               ))}
+              </div>
             </RadioGroup>
           )}
           <Stack direction={'row'} spacing={2}>
           <Button onClick={handleNext} disabled={isNextDisabled }>
-              'Next'
+              Next
             </Button>
           </Stack>
         </Stack>

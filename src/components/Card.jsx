@@ -11,7 +11,8 @@ function Card({ icon,name}) {
         height: '280px',
         overflow: 'hidden',
         position: 'relative', 
-        cursor:'pointer'
+        cursor:'pointer',
+        margin:'1rem',
       }}
     >
       <Box
@@ -26,6 +27,7 @@ function Card({ icon,name}) {
           top: 0,
           left: 0,
           zIndex: 1,
+          
           '&:hover':{transform:'scale(1.02)'}
         }}
       />

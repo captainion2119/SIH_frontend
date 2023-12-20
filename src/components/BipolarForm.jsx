@@ -48,7 +48,7 @@ const BipolarForm = () => {
   };
 
   return (
-    <Paper sx={{width:'100%',marginTop:'2rem',minHeight:'70vh',padding:'1rem'}}>
+    <Paper sx={{width:'80%',marginTop:'2rem',minHeight:'70vh',padding:'1rem',margin:'auto'}}>
       {currentQuestion < questions.length ? (
         <Stack alignItems={'center'} sx={{ height: '80%' }} justifyContent={'center'} spacing={3}>
           <Typography variant="body1" lineHeight={1.5}>{questions[currentQuestion][0]}</Typography>

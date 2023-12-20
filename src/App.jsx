@@ -12,6 +12,7 @@ const EatingForm  =lazy(()=> import('./components/EatingForm'));
 import depression from './assets/depression.jpg';
 import Details from './pages/Details';
 import  Grid  from '@mui/material/Grid';
+import bg from './assets/wall.jpg'
 function App() {
   
   const data = [
@@ -44,7 +45,7 @@ function App() {
     {
       icon: anxiety,
       name: 'anxiety',
-      testTypes: ['image', 'audio'],
+      testTypes: ['image', 'audio','text','questionnaire'],
       detail: {
         'What is anxiety':
           'Anxiety is a normal reaction to stress and can be beneficial in some situations. However, when it becomes excessive or chronic, it can interfere with daily life.',
@@ -64,7 +65,7 @@ function App() {
     },
     {
       name: 'bipolar_disorder',
-      testTypes: ['questionnaire'],
+      testTypes: ['mcq'],
       detail: {
         'What is bipolar disorder':
           'Bipolar disorder, also known as manic-depressive illness, is a mental health condition characterized by extreme mood swings, including emotional highs (mania or hypomania) and lows (depression).',
@@ -83,7 +84,7 @@ function App() {
     },
     {
       name: 'eating_disorder',
-      testTypes: ['questionnaire'],
+      testTypes: ['mcq'],
       detail: {
         'What is eating disorder':
           'Eating disorders are serious mental health conditions characterized by unhealthy eating habits that negatively impact physical and mental well-being.',
@@ -130,7 +131,7 @@ function App() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
 
-    <div style={{height:'100%'}}>
+    <div style={{height:'100vh',backgroundImage:`url(${bg})`,backgroundAttachment: 'fixed',backgroundSize:'cover'}}>
     <Router>
       
     <Navbar data={data.map((item)=>item.name)}/>

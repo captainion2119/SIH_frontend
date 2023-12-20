@@ -4,7 +4,7 @@ import { Typography, Grid, List, ListItem, ListItemButton, ListItemText } from '
 function Index({ names }) {
   return (
     <>
-      <div style={{ margin: 'auto', width: '100%' }}>
+      <div style={{  width: '100%'}}>
         <Typography variant="h6" paddingLeft={'1rem'}>
           Content
         </Typography>
@@ -25,9 +25,10 @@ function Index({ names }) {
 function Details({ data }) {
   const arr = Object.keys(data.detail);
   return (
-    <div style={{ marginTop: '4rem' }}>
-      <Grid container spacing={2}>
-        <Grid item container xs={12} sm={12} md={3} justifyContent={'center'} sx={{ backgroundColor: 'gainsboro' }}>
+    <div style={{ marginTop: '4rem', position: 'relative' }}>
+    <Grid container spacing={2}>
+      <Grid item container xs={12} sm={12} md={3} style={{ position: 'sticky', top: '4rem', height: '100vh' }}>
+        
           <Index names={arr} />
         </Grid>
         <Grid item container xs flexDirection={'column'} spacing={'2rem'}>

@@ -25,8 +25,8 @@ function Text({textData,setTextData}) {
   };
 
   return (
-    <Container component="main" maxWidth="md">
-      <Paper elevation={3} style={{ padding: '20px', marginTop: '20px' }}>
+    
+     <Paper sx={{padding:'3rem', marginTop:'40rem'}}>
         <form>
           <Grid container spacing={2}>
             {questions.map((question, index) => (
@@ -47,8 +47,8 @@ function Text({textData,setTextData}) {
             ))}
           </Grid>
         </form>
-      </Paper>
-    </Container>
+     </Paper>
+    
   );
 }
 
