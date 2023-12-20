@@ -3,7 +3,9 @@ html, body, #root {
     margin: 0;
   }
   
- 
+#root{
+  background-image:url("/assets/giphy.gif");
+}
   
   * {
     box-sizing: border-box;

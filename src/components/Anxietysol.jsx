@@ -5,8 +5,9 @@ import Box from '@mui/material/Box';
 import ChinMudra from '../assets/Chin-mudra.gif';
 import ApanaMudra from '../assets/Apana-mudra.gif';
 import PranaMudra from '../assets/Prana-mudra.gif';
-
+import subscribeCard from './subscribeCard';
 import GetHospitle from '../components/GetHospitle';
+import { Grid } from '@mui/material';
 
 const Anxietysol = ({ anxietyLevel }) => {
   const [mudra, setMudra] = useState(null);
@@ -68,6 +69,8 @@ const Anxietysol = ({ anxietyLevel }) => {
   
 
   return (
+    <Grid container >
+    <Grid item xs={9}>
     <Box
       sx={{
         display: 'flex',
@@ -112,6 +115,9 @@ const Anxietysol = ({ anxietyLevel }) => {
         <Typography>No emergency at the moment.</Typography>
       )}
     </Box>
+    </Grid>
+    <Grid item xs={3}><subscribeCard/></Grid>
+    </Grid>
   );
 };
 

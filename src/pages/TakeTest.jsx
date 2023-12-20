@@ -5,9 +5,9 @@ import Video from '../components/Video';
 import Text from '../components/Text';
 import Image from '../components/Image';
 import Diagnosis from './Diagnosis';
-import { Typography,Stack,Button } from '@mui/material';
+import { Typography,Stack,Button,Paper } from '@mui/material';
 import AnxietyQuestion from '../components/AnxietyQuestion';
-import Questionnaire from '../components/DepressionQuestion';
+
 function TakeTest({ tests,apiEndPoint}) {
   const navigate = useNavigate();
   const [cur, setCur] = useState(0);
@@ -66,6 +66,7 @@ function TakeTest({ tests,apiEndPoint}) {
   };
 
   return (
+    <Paper sx={{width:'100%',height:'70%',margin:'auto'}}>
     <Stack alignItems={'center'} justifyContent={'center'} sx={{height:'100%',width:'100%'}} gap={'2rem'}>
       {cur === tests.length && <Diagnosis />}
       {!show && cur < tests.length && (
@@ -98,6 +99,7 @@ function TakeTest({ tests,apiEndPoint}) {
           
         ))}
     </Stack>
+    </Paper>
   );
 }
 

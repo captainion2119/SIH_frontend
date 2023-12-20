@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Button from '@mui/material/Button';
+import { Paper } from '@mui/material';
 
 const Image = ({ imageData, setImageData }) => {
   const videoRef = useRef(null);
@@ -49,7 +50,8 @@ const Image = ({ imageData, setImageData }) => {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', alignItems: 'center' }}>
+    
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', alignItems: 'center' ,width:'100%'}}>
       {!imageData ? (
         <video ref={videoRef} autoPlay />
       ) : (
@@ -61,6 +63,8 @@ const Image = ({ imageData, setImageData }) => {
         <Button onClick={retakeImage}>Retake</Button>
       )}
     </div>
+    
+    
   );
 };
 

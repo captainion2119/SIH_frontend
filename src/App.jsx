@@ -67,7 +67,7 @@ function App() {
     },
     {
       icon: bipolar,
-      name: 'bipolar',
+      name: 'bipolar_disorder',
       testTypes: ['mcq'],
       detail: {
         'What is bipolar disorder':
@@ -86,7 +86,7 @@ function App() {
       },
     },
     {icon: eating,
-      name: 'eating',
+      name: 'eating_disorder',
       testTypes: ['mcq'],
       detail: {
         'What is eating disorder':
@@ -109,26 +109,6 @@ function App() {
         ],
       },
     },
-    {
-      name: "parkinson's_disease",
-      testTypes: ['video', 'audio'],
-      detail: {
-        "What is Parkinson's disease":
-          "Parkinson's disease is a neurodegenerative disorder that affects movement. It develops gradually and is characterized by tremors, stiffness, slowness of movement, and impaired balance.",
-        Types: [
-         'Tremor-dominant : Tremor-dominant Parkinsonism is characterized by prominent resting tremors as the primary motor symptom.',
-        'Postural Instability and Gait Disturbance (PIGD) : PIGD is a subtype of Parkinsonism characterized by difficulties with balance, posture, and walking.',
-          
-        ],
-        Symptoms: [
-          'Resting tremors',
-          'Bradykinesia (slowness of movement)',
-          'Postural instability',
-          'Muscle stiffness',
-        ],
-        'Risk factors': ['Age', 'Genetics', 'Environmental factors'],
-      },
-    },
   ];
   
   return (
@@ -149,7 +129,7 @@ function App() {
       })}/>}/>
       <Route exact path='/tests/depression' element={<TakeTest tests={data[0].testTypes} apiEndPoint={'2'}/>}/>
       <Route path='/tests/anxiety' element={<TakeTest tests={data[1].testTypes} apiEndPoint={'1'}/> }/>
-      <Route path="/tests/parkinson's_disease" element={<TakeTest tests={data[4].testTypes} apiEndPoint={'3'}/>}/>
+      {/* <Route path="/tests/parkinson's_disease" element={<TakeTest tests={data[4].testTypes} apiEndPoint={'3'}/>}/> */}
       <Route path='/tests/bipolar_disorder' element={<BipolarForm/>}/>
       <Route path='/tests/eating_disorder' element={<EatingForm/>}/>
       <Route path= "/tests/:testName/diagnosis/:data" element={<Diagnosis/>}/>
@@ -157,7 +137,7 @@ function App() {
       <Route path= "/details/anxiety" element={<Details data = {{name:data[1].name,detail:data[1].detail}}/>}/>
       <Route path= "/details/bipolar_disorder" element={<Details data = {{name:data[2].name,detail:data[2].detail}}/>}/>
       <Route path= "/details/eating_disorder" element={<Details data = {{name:data[3].name,detail:data[3].detail}}/>}/>
-      <Route path= "/details/parkinson's_disease" element={<Details data = {{name:data[4].name,detail:data[4].detail}}/>}/>
+      {/* <Route path= "/details/parkinson's_disease" element={<Details data = {{name:data[4].name,detail:data[4].detail}}/>}/> */}
       
     </Routes>
     </Grid>
