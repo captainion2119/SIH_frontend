@@ -15,8 +15,8 @@ function subscribeCard() {
   return (
     <Paper sx={{padding:'1rem' , margin:'1rem'}}>
         <Typography>Are you interested in monitering your progress? </Typography>
-        <Button onClick ={handleYes} >Yes</Button>
-        <Button onClick = {handleNo} >No</Button>
+        <button onClick ={handleYes} >Yes</button>
+        <button onClick = {handleNo} >No</button>
     </Paper>
   )
 }

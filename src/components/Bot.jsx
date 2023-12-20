@@ -33,7 +33,7 @@ const Bo = () => {
 
     // Send user message to API and get bot response
     try {
-      const response = await fetch('http://', {
+      const response = await fetch(`http://127.0.0.1:5001/chat/${userMessage}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

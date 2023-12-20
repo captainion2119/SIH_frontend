@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import ChinMudra from '../assets/Chin-mudra.gif';
 import ApanaMudra from '../assets/Apana-mudra.gif';
 import PranaMudra from '../assets/Prana-mudra.gif';
-import subscribeCard from './subscribeCard';
+import SubscribeCard from './subscribeCard';
 import GetHospitle from '../components/GetHospitle';
 import { Grid } from '@mui/material';
 
@@ -116,7 +116,7 @@ const Anxietysol = ({ anxietyLevel }) => {
       )}
     </Box>
     </Grid>
-    <Grid item xs={3}><subscribeCard/></Grid>
+    <Grid item xs={3}><SubscribeCard/></Grid>
     </Grid>
   );
 };

@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import axios from 'axios';
-import './SignUp.css'
+import '../components/SignUp.css'
 function SignUp() {
  
   const [inputData, setInputData] = useState('');
@@ -30,7 +30,7 @@ function SignUp() {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:5000/process-data', {
+      const response = await axios.post('http://localhost:5001/process-data', {
         name: inputData,
         number: inputData2,
         age: inputData3,

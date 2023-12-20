@@ -15,6 +15,8 @@ import anxiety from './assets/anxiety.jpg';
 import Details from './pages/Details';
 import  Grid  from '@mui/material/Grid';
 import bg from './assets/wall.jpg'
+import SignUp from './pages/SignUp';
+
 function App() {
   
   const data = [
@@ -47,7 +49,7 @@ function App() {
     {
       icon: anxiety,
       name: 'anxiety',
-      testTypes: ['image', 'audio','questionnaire'],
+      testTypes: ['image', 'audio', 'text', 'questionnaire'],
       detail: {
         'What is anxiety':
           'Anxiety is a normal reaction to stress and can be beneficial in some situations. However, when it becomes excessive or chronic, it can interfere with daily life.',
@@ -137,6 +139,7 @@ function App() {
       <Route path= "/details/anxiety" element={<Details data = {{name:data[1].name,detail:data[1].detail}}/>}/>
       <Route path= "/details/bipolar_disorder" element={<Details data = {{name:data[2].name,detail:data[2].detail}}/>}/>
       <Route path= "/details/eating_disorder" element={<Details data = {{name:data[3].name,detail:data[3].detail}}/>}/>
+      <Route path= "/signup" element={<SignUp/>}/>
       {/* <Route path= "/details/parkinson's_disease" element={<Details data = {{name:data[4].name,detail:data[4].detail}}/>}/> */}
       
     </Routes>
