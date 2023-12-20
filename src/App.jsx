@@ -5,11 +5,13 @@ const Tests = lazy(() => import('./pages/Tests'));
 const Navbar = lazy(()=> import('./components/Navbar'));
 import { BrowserRouter as Router , Routes,Route } from 'react-router-dom'
 import TakeTest from './pages/TakeTest';
-import anxiety from './assets/anxiety.jpg'
 const Diagnosis = lazy(()=> import('./pages/Diagnosis'));
 const BipolarForm = lazy(()=> import('./components/BipolarForm'));
 const EatingForm  =lazy(()=> import('./components/EatingForm'));
 import depression from './assets/depression.jpg';
+import bipolar from './assets/bipolar.png';
+import eating from './assets/eating_disorder.png';
+import anxiety from './assets/anxiety.jpg';
 import Details from './pages/Details';
 import  Grid  from '@mui/material/Grid';
 import bg from './assets/wall.jpg'
@@ -19,7 +21,7 @@ function App() {
     {
       icon: depression,
       name: 'depression',
-      testTypes: ['audio', 'image','text'],
+      testTypes: ['audio', 'image','text','depressionquesionnaire'],
       detail: {
         'What is depression':
           'Depression is a common and serious medical illness that negatively affects how you feel, think, and act. It causes feelings of sadness and/or a loss of interest in activities once enjoyed.',
@@ -45,7 +47,7 @@ function App() {
     {
       icon: anxiety,
       name: 'anxiety',
-      testTypes: ['image', 'audio','text','questionnaire'],
+      testTypes: ['image', 'audio','questionnaire'],
       detail: {
         'What is anxiety':
           'Anxiety is a normal reaction to stress and can be beneficial in some situations. However, when it becomes excessive or chronic, it can interfere with daily life.',
@@ -64,7 +66,8 @@ function App() {
       },
     },
     {
-      name: 'bipolar_disorder',
+      icon: bipolar,
+      name: 'bipolar',
       testTypes: ['mcq'],
       detail: {
         'What is bipolar disorder':
@@ -82,8 +85,8 @@ function App() {
         'Risk factors': ['Genetics', 'Brain structure and function', 'Family history'],
       },
     },
-    {
-      name: 'eating_disorder',
+    {icon: eating,
+      name: 'eating',
       testTypes: ['mcq'],
       detail: {
         'What is eating disorder':

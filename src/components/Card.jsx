@@ -4,6 +4,7 @@ import { Box, Stack, Typography } from '@mui/material';
 function Card({ icon,name}) {
   const backgroundImage = icon ? `url(${icon})` : 'none';
   return (
+    <Stack alignItems={'center'}>
     <Box
       sx={{
         borderRadius:'.5rem',
@@ -39,9 +40,10 @@ function Card({ icon,name}) {
           zIndex: 2,
         }}
       >
-        <Typography sx={{ zIndex: 3 ,color:'inherit',textDecoration:'none'}}>{name}</Typography>
       </Stack>
     </Box>
+    <Box><Typography sx={{ zIndex: 3 ,color:'inherit',textDecoration:'none'}}>{name}</Typography></Box>
+    </Stack>
   );
 }
 

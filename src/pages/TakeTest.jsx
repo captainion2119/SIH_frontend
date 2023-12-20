@@ -7,6 +7,7 @@ import Image from '../components/Image';
 import Diagnosis from './Diagnosis';
 import { Typography,Stack,Button } from '@mui/material';
 import AnxietyQuestion from '../components/AnxietyQuestion';
+import Questionnaire from '../components/DepressionQuestion';
 function TakeTest({ tests,apiEndPoint}) {
   const navigate = useNavigate();
   const [cur, setCur] = useState(0);
@@ -40,6 +41,7 @@ function TakeTest({ tests,apiEndPoint}) {
     formData.append('questionnaireData',answers);
     // formData.append('videoData', videoData);
     // need to work on the video data
+    console.log(answers)
 
     //console.log(textData);
     fetch(`http://127.0.0.1:5000/update/${apiEndPoint}`, { //Change this back to /1
@@ -85,6 +87,8 @@ function TakeTest({ tests,apiEndPoint}) {
       {show && cur < tests.length && tests[cur] === 'video' && <Video videoData={videoData} setVideoData={setVideoData} />}
 
         {show && cur<tests.length && tests[cur] === 'questionnaire' && <AnxietyQuestion setAnswers={setAnswers}/>}
+        
+        {show && cur<tests.length && tests[cur] === 'depressionquestionnaire' && <DepressionQuestion setAnswers={setAnswers} />}
       {show &&
         (cur < tests.length - 1 ? (
           <Button onClick={handleNextClick}sx={{marginTop:'1rem',marginBottom:'2rem'}}>Next</Button>
