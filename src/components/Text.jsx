@@ -24,17 +24,10 @@ function Text({textData,setTextData}) {
     
   };
 
-
-
   return (
     <Container component="main" maxWidth="md">
       <Paper elevation={3} style={{ padding: '20px', marginTop: '20px' }}>
-        
-
         <form>
-          
-        
-
           <Grid container spacing={2}>
             {questions.map((question, index) => (
               <Grid item xs={12} key={index}>
