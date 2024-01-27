@@ -1,0 +1,22 @@
+.chatbot-container {
+    display: inline-block;
+    animation: moveUpDown 2s linear infinite;
+  }
+  
+.chatbot-icon {
+width: 60px;
+height: 80px;
+}
+
+.chatbot-container:hover {
+animation-play-state: paused;
+}
+
+@keyframes moveUpDown {
+0%, 100% {
+    transform: translateY(0);
+}
+50% {
+    transform: translateY(-10px);
+}
+}

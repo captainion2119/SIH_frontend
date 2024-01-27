@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Typography ,Grid} from '@mui/material';
 import Card from '../components/Card';
-import {Link} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 function Tests({data}) {
 
   return (
@@ -10,9 +10,9 @@ function Tests({data}) {
         {data.map((item,index) => (
           
         <Grid item xs={12} sm={6} md={4} key={index}>
-          <Link to={{pathname:new URL(`${window.location.pathname}/${item.name}`, window.location.href).pathname}}>
+          <NavLink to={{pathname:new URL(`${window.location.pathname}/${item.name}`, window.location.href).pathname}} sx={{textDecoration:'none'}}>
             <Card icon={item.icon} name={item.name}></Card>
-            </Link>
+            </NavLink>
         </Grid>
         
         ))}

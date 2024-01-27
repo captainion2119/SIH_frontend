@@ -11,13 +11,13 @@ function LearnMoreCard({data,alignSelf}) {
   const theme = useTheme();
 const smallScreen = useMediaQuery(theme.breakpoints.down("sm"));
   return (
-    <Grid  flexDirection= 'row' sx={{alignSelf: smallScreen? 'center':alignSelf}} onClick={()=>{navigate(`/details/${data.name}`)}}>
-    <Paper elevation={4} sx={{ width: '270px', height: '300px', padding: '1rem',cursor:'pointer','&:hover':{boxShadow:'0 0 25px rgba(0, 0, 0,0.4)'} }}>
+    <Grid  flexDirection= 'row' sx={{alignSelf: smallScreen? 'center':alignSelf,}} onClick={()=>{navigate(`/details/${data.name}`)}}>
+    <Paper elevation={4} sx={{ width: '280px',  padding: '1rem',cursor:'pointer','&:hover':{boxShadow:'0 0 25px rgba(0, 0, 0,0.3)'},borderRadius:'.8rem',margin:'1.5rem' }}>
      <Stack alignItems={'center'} spacing={'1rem'}>
         <Avatar src={data.icon} sx={{ width: '5rem', height: '5rem'}} />
-      <Typography variant='h5'>{name}</Typography>
+      <Typography variant='h5'>{name.charAt(0).toUpperCase()+name.slice(1)}</Typography>
       <Typography variant="h6" align='center' sx={{display: '-webkit-box',
-          WebkitBoxOrient: 'vertical', overflow: 'hidden', textOverflow: 'ellipsis',WebkitLineClamp: '4' }}>
+          WebkitBoxOrient: 'vertical', overflow: 'hidden', textOverflow: 'ellipsis',WebkitLineClamp: '4'}}>
       {data.detail}</Typography>
       </Stack>
     </Paper>

@@ -66,7 +66,7 @@ function TakeTest({ tests,apiEndPoint}) {
   };
 
   return (
-    <Paper sx={{width:'100%',height:'70%',margin:'auto'}}>
+    <Paper sx={{width:'100%',height:'70%',margin:'auto',backgroundColor:'magenta'}}>
     <Stack alignItems={'center'} justifyContent={'center'} sx={{height:'100%',width:'100%'}} gap={'2rem'}>
       {cur === tests.length && <Diagnosis />}
       {!show && cur < tests.length && (

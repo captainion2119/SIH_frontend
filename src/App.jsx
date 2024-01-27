@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from 'react';
-
+import { Stack } from '@mui/material';
 const Home = lazy(() => import('./pages/Home'));
 const Tests = lazy(() => import('./pages/Tests'));
 const Navbar = lazy(()=> import('./components/Navbar'));
@@ -16,7 +16,7 @@ import Details from './pages/Details';
 import  Grid  from '@mui/material/Grid';
 import bg from './assets/wall.jpg'
 import SignUp from './pages/SignUp';
-
+import Footer from './components/Footer'
 function App() {
   
   const data = [
@@ -116,15 +116,14 @@ function App() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
 
-    <div style={{height:'100vh',backgroundImage:`url(${bg})`,backgroundAttachment: 'fixed',backgroundSize:'cover'}}>
+    <Stack style={{backgroundImage:`url(${bg})`,backgroundAttachment: 'fixed',backgroundSize:'cover',minHeight:'100%',position:'absolute',width:'100%'}}>
     <Router>
-      
     <Navbar data={data.map((item)=>item.name)}/>
     
-    <Grid container xs={10} sm={10} md={8} sx={{margin:'auto',height:'80%'}}>
+    <Grid container xs={10} sm={10} md={8} sx={{margin:'auto',overflow:'hidden',height:'100%'}}>
     <Routes>
       <Route exact path='/' element={<Home data= {data.map((item)=>{
-        return {name: item.name,detail: item.detail[Object.keys(item.detail)[0]]}
+        return {name: item.name,detail: item.detail[Object.keys(item.detail)[0]],icon:item.icon}
       })} />}/>
       <Route exact path='/tests' element={<Tests data={data.map((item)=>{
         return {name:item.name, icon: item.icon}
@@ -144,9 +143,10 @@ function App() {
       
     </Routes>
     </Grid>
-    
     </Router>
-    </div>
+    <Footer/>
+    </Stack>
+      
     </Suspense>
   )
 }

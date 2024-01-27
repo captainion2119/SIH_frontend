@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { Grid, Menu, MenuItem, Button, Typography } from '@mui/material';
+import { Grid, Menu, MenuItem, Button, Typography,Box } from '@mui/material';
 import logo from '../assets/swas.png'
 function Navbar({ data }) {
   const navigate = useNavigate();
@@ -21,13 +21,25 @@ function Navbar({ data }) {
 
   return (
     <>
-      <Grid container alignItems={'center'} justifyContent={'space-between'} px={1.5}  sx={{ position: 'sticky', top: '0', zIndex: '100' }}>
-        <Grid item>
-          <NavLink to={'/'} style={{ color: 'inherit', textDecoration: 'none' }}>
-            <img src={logo} alt="logo" width={'70px'} height={'70px'} />
-          </NavLink>
-        </Grid>
-        <Grid item container xs spacing={2.5} justifyContent={'flex-end'}>
+      <Grid container alignItems={'center'} justifyContent={'space-between'} px={3}  sx={{ position: 'sticky', top: '0', zIndex: '100' }}>
+        
+          <Grid item sx={{color:'black',mixBlendMode:'difference'}} >
+          <NavLink to={'/'}
+  style={{
+    fontFamily: 'Swasti',
+    fontSize: '28px',
+    textDecoration:'none',
+    color:'black'
+  }}
+>
+  Svasthyam
+</NavLink>
+
+          <Typography variant='body2'sx={{fontSize:'14px'}}>Because every mind matters...</Typography>
+          </Grid>
+      
+        <Grid item xs>
+          <Grid container spacing={2} justifyContent={'flex-end'} >
           <Grid item>
             <NavLink to={'/tests'} style={{ color: 'inherit', textDecoration: 'none' }}>
               <Typography variant='body1'>Tests</Typography>
@@ -50,10 +62,17 @@ function Navbar({ data }) {
               keepMounted
               open={Boolean(anchorEl)}
               onClose={handleClose}
+              sx={{
+                '& .MuiPaper-root': {
+                  backgroundColor: 'rgba(150, 155, 200, 0.1) !important',
+                  backdropFilter: 'blur(5px) !important',
+                  boxShadow: 'none !important',
+                },
+              }}
             >
               {data.map((menuItem, index) => (
                 <MenuItem key={index} onClick={() => handleMenuClick(`/details/${menuItem}`)}>
-                  {menuItem}
+                  {menuItem.charAt(0).toUpperCase()+menuItem.replace('_',' ').slice(1)}
                 </MenuItem>
               ))}
             </Menu>
@@ -62,6 +81,7 @@ function Navbar({ data }) {
             <NavLink to={'/aboutUs'} style={{ color: 'inherit', textDecoration: 'none' }}>
               <Typography variant='body1'>About us</Typography>
             </NavLink>
+          </Grid>
           </Grid>
         </Grid>
       </Grid>

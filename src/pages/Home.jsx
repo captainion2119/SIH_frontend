@@ -7,18 +7,17 @@ import { NavLink } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 import  useMediaQuery from '@mui/material/useMediaQuery'
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
-import Bot from '../components/Bot' 
+import Bot from '../components/Bot/Bot.jsx' 
+import call from '../assets/call.png'
 const LearnMoreCard = lazy(() => import('../components/LearnMoreCard'));
 
-const Footer = lazy(() => import('../components/Footer'));
 
-import blob from '../assets/blob.png'
 
 const HomeSection = ({ title, subTitle, to }) => (
   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%' ,gap:'2rem'}}>
     <Typography variant='h4' textAlign='center'>{title}</Typography>
     <Typography variant='h6' textAlign='center'>{subTitle}</Typography>
-    <NavLink to={to}><Button variant='contained' sx={{width:'12rem',height:'3rem',borderRadius:'1.5rem'}}>Take the test</Button></NavLink>
+    <NavLink to={to}><Button variant='contained' sx={{width:'12rem',height:'3rem',borderRadius:'1.5rem',backgroundColor:'RGB(3 36 87)','&:hover':{backgroundColor:'rgb(5,75,137)'},mixBlendMode:'revert'}}>Take the test</Button></NavLink>
   </div>
 );
 
@@ -48,17 +47,19 @@ return(
   </Typography>
 </Box>
 
-    <Stack sx={{ marginTop: '8rem', width: '100%' }}>
-      <Typography variant='h4' textAlign='center' mb='8rem' id='learn-more'>Learn more about mental health</Typography>
+    <Stack sx={{ marginTop: '8rem', width: '100%'}}>
+      <Typography variant='h4' textAlign='center' mb='8rem' id='learn-more' >Learn more about mental health</Typography>
       <Stack spacing='3rem'>
         {data.map((item,index) => (
           <LearnMoreCard key={item.name} data={item} alignSelf={index%2 == 0 ? 'flex-start' : 'flex-end'} />
         ))}
       </Stack>
-      <Footer />
+      
     </Stack>
     <Bot/> 
-  </Suspense>);
+  
+  </Suspense>
+  );
 };
 
 export default Home;
